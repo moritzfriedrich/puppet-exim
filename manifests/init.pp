@@ -453,6 +453,12 @@
 # @param exim_service
 #   Name of the service
 #
+# @param smtputf8_advertise_hosts
+#   advertise SMTPUTF8 to these hosts
+#
+# @param dns_check_names_pattern
+#   pre-DNS syntax check
+#
 # @example
 #  include ::exim
 #
@@ -582,6 +588,8 @@ class exim (
   Optional[String] $exim_heavy_package,
   Optional[String] $exim_service,
   Optional[Boolean] $ensure_resources,
+  Optional[Array[String]] $smtputf8_advertise_hosts,
+  Optional[String] $dns_check_names_pattern,
 ) {
 
   include ::exim::install

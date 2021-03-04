@@ -212,3 +212,7 @@ tls_privatekey                     = <%= @tls_privatekey %>
 <% end -%>
 <% unless @mysql_servers.nil?                       -%>hide mysql_servers                = <%= @mysql_servers.map{|i| i.gsub(':', '::')}.join(" : ") %>
 <% end -%>
+<% unless @smtputf8_advertise_hosts.nil?           -%>smtputf8_advertise_hosts           = <%= @smtputf8_advertise_hosts.join(' : ') %>
+<% end -%>
+<% unless @dns_check_names_pattern.nil?            -%>dns_check_names_pattern            = <%= @dns_check_names_pattern %>
+<% end -%>

@@ -34,6 +34,12 @@ describe 'exim', type: 'class' do
     it { is_expected.to contain_concat__fragment('main').with_content(%r{^ldap_default_servers\s+= ldap1 : ldap2$}) }
   end
 
+  context 'smtputf8_advertise_hosts' do
+    let(:params) { { smtputf8_advertise_hosts: ['host1', 'host2'] } }
+
+    it { is_expected.to contain_concat__fragment('main').with_content(%r{^smtputf8_advertise_hosts\s+= host1 : host2$}) }
+  end
+
   bool_parameter = ['message_logs', 'gnutls_compat_mode', 'smtp_return_error_details']
   bool_parameter.each do |parameter|
     context parameter + ' set to false' do
@@ -62,7 +68,7 @@ describe 'exim', type: 'class' do
       it { is_expected.to contain_concat__fragment('main').without_content(%r{^#{parameter}}) }
     end
   end
-  string_parameter = ['smtp_receive_timeout']
+  string_parameter = ['smtp_receive_timeout', 'dns_check_names_pattern']
   string_parameter.each do |parameter|
     context parameter + ' set to bar foo' do
       let(:params) { { parameter => 'foo' } }
